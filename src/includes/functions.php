@@ -400,12 +400,13 @@ function checkIfActive($string) {
 function getAllSetting()
 {
     global $DB;
-    $conf = array();
+    $conf = array('theme' => 'default', 'themeVersion' => '1.0.0');
     $result = $DB->getAll("SELECT * FROM pre_config");
     foreach ($result as $row) {
         if ($row['k'] == 'cache') continue;
         $conf[$row['k']] = $row['v'];
     }
+
     return $conf;
 }
 

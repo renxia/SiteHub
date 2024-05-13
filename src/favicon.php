@@ -15,7 +15,7 @@ require ROOT . '/includes/favicon.class.php';
 /* ------ 参数设置 ------ */
 
 define('CACHE_ROOT', ROOT . '/cache/favicon'); // 图标缓存目录
-$defaultIco = ROOT . '/cache/favicon.ico'; // 默认图标路径
+$defaultIco = ROOT . '/cache/favicon.png'; // 默认图标路径
 $expire = 2592000; // 缓存有效期30天, 单位为:秒，为0时不缓存
 
 /* ------ 参数设置 ------ */
@@ -47,8 +47,8 @@ if ($expire == 0) {
     $defaultMD5 = md5(file_get_contents($defaultIco));
 
     $data = Cache::get($formatUrl, $defaultMD5, $expire);
-    if ($data !== NULL) {
-        foreach ($favicon->getHeader() as $header) {
+    if (!empty($data)) {
+        foreach ($favicon->getHeader($data) as $header) {
             @header($header);
         }
         @header("Cache-Control: public, max-age={$expire}");
@@ -86,6 +86,15 @@ if ($expire == 0) {
  */
 class Cache
 {
+    public static function getLocal($f) {
+        $exts = ['.ico', '.png', '.jpg'];
+        foreach ($exts as $ext) {
+            $file = ROOT . '/cache/local/' . $f . $ext;
+            if (is_file($file)) {
+                return file_get_contents($file);
+            }
+        }
+    }
     /**
      * 获取缓存的值, 不存在时返回 null
      *
@@ -98,6 +107,9 @@ class Cache
     {
         //$f = md5( strtolower( $key ) );
         $f = parse_url($key)['host'];
+
+        $data = Cache::getLocal($f);
+        if ($data) return $data;
 
         $file = CACHE_ROOT . '/' . $f . '.txt';
 

@@ -111,6 +111,14 @@ switch ($act) {
         }
         exit('{"code":-1,"msg":"删除失败！"}');
         break;
+    case 'list':
+        @header('Content-Type: application/json; charset=UTF-8');
+        $page         = _get('page', 1);
+        $page_offset  = ($page - 1) * $page_size;
+        $page_size = _get('pageSize', 10);
+        $site_list  = $DB->findAll('site', '*', null, 'time desc', "$page_offset, $page_size");
+        exit(json_encode(['code' => 0, 'data' => $site_list ]));
+        break;
     default:
         @header('Content-Type: application/json; charset=UTF-8');
         exit('{"code":-4,"msg":"No Act"}');

@@ -37,7 +37,7 @@ $page_title = $article_item['name'] . '-' . $conf['title'];
     <link rel="shortcut icon" type="images/x-icon" href="./favicon.ico" />
     <link href="./assets/fontawesome/4.7.0/css/fontawesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="./assets/css/ozui.min.css" />
-    <link rel="stylesheet" type="text/css" href="./templates/default/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./templates/<?php echo $conf['theme']; ?>/css/style.css?v=<?php echo $conf['themeVersion']; ?>" />
     <?php echo $conf['script_header']; ?>
 
 </head>

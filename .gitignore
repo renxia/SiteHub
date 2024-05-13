@@ -1,2 +1,6 @@
-src/cache/favicon/*
+src/cache/*
+!src/cache/favicon.*
 src/install/install.lock
+src/config.php
+src/templates
+!src/templates/default

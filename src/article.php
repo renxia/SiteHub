@@ -6,7 +6,7 @@ require('./includes/lang.class.php');
 $page_title  = $lang->index->article . '-' . $conf['title'];
 $row_article_cate    = $DB->findAll('article_category', 'id,icon,catename', '', 'sid asc');
 $row_article_suggest = $DB->findAll('article', '*', 'tui=1', 'time desc', 4);
-// $sql = `SELECT s.catename AS category, 
+// $sql = `SELECT s.catename AS category,
 // JSON_ARRAYAGG(
 //     JSON_OBJECT('id', a.id, 'name', a.name, 'introduce', a.introduce, 'hits_total', a.hits_total, 'tui', a.tui, 'time', a.time)
 // ) AS articles
@@ -27,7 +27,7 @@ $row_article_suggest = $DB->findAll('article', '*', 'tui=1', 'time desc', 4);
     <link rel="shortcut icon" type="images/x-icon" href="./favicon.ico" />
     <link href="./assets/fontawesome/4.7.0/css/fontawesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="./assets/css/ozui.min.css" />
-    <link rel="stylesheet" type="text/css" href="./templates/default/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./templates/<?php echo $conf['theme']; ?>/css/style.css?v=<?php echo $conf['themeVersion']; ?>" />
     <?php echo $conf['script_header']; ?>
 
 </head>

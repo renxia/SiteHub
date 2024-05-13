@@ -9,7 +9,7 @@ $cate_list = $DB->findAll('category', '*', '', 'sid asc');
 // 更新最新点入友链
 updateRefererIn();
 // 最新点入：友链后在贵站点击即排本站首位
-$site_list_drtime = $DB->findAll('site', 'id,name,img', '', 'drtime desc', 14);
+$site_list_drtime = $DB->findAll('site', 'id,name,alias,introduce,img', '', 'drtime desc', 14);
 // 总浏览top10
 $site_list_rank = $DB->findAll('site', 'id,alias,name,img,hits_total', null, 'hits_total desc', 10);
 // 最新收录
@@ -27,19 +27,7 @@ require_once('./includes/lang.class.php');
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,minimum-scale=1,maximum-scale=1,user-scalable=no">
-        <title><?php echo $page_title; ?></title>
-        <meta name="keywords" content="<?php echo $conf['keywords'];?>">
-        <meta name="description" content="<?php echo $conf['description'];?>">
-        <link rel="shortcut icon" type="images/x-icon" href="./favicon.ico"/>
-        <link href="./assets/fontawesome/4.7.0/css/fontawesome.min.css" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="./assets/css/ozui.min.css"/>
-        <link rel="stylesheet" type="text/css" href="./templates/default/css/style.css"/>
-        <?php echo $conf['script_header']; ?>
-
-    </head>
+    <head><?php require('./home/meta.php'); ?></head>
 <body>
 <?php require('./home/header.php'); ?>
 <?php require('./home/banner.php'); ?>
@@ -85,34 +73,43 @@ require_once('./includes/lang.class.php');
             </a>
         </div> -->
 
-        <div class="card">
+        <div class="card link-card link-new">
             <div class="card-head">
                 <i class="fa fa-link fa-fw"></i>最新点入：友链后在贵站点击即排本站首位!<a href="apply.html" class="more"><i class="fa fa-plus-square" aria-hidden="true"></i>申请收录</a>
             </div>
-            <div class="card-body">
+            <div class="card-body flex">
                 <?php foreach($site_list_drtime as $rows) { ?>
-                <a href="<?php echo "site-{$rows['id']}.html"; ?>" target="_blank" class="item" title="<?php echo $rows['name']; ?>" data-id="<?php echo $rows['id']; ?>">
-                    <span class="icon"><img class="lazy-load" src="assets/images/loading.gif" data-src="<?php echo $rows['img']; ?>"></span>
-                    <span class="name"><?php echo $rows['name']; ?></span>
-                </a>
+                    <div class="item">
+                        <a class="link-box" href="<?php echo "site-{$rows['id']}.html"; ?>" target="_blank" title="<?php echo $rows['name']; ?>" data-id="<?php echo $rows['id']; ?>">
+                            <h3 class="item-title">
+                                <span class="icon"><img class="lazy-load" src="assets/images/loading.gif" data-src="<?php echo $rows['img']; ?>"></span>
+                                <span class="name"><?php echo $rows['name']; ?></span>
+                            </h3>
+                            <div class="intro" title="<?php echo $rows['introduce']; ?>"><?php echo $rows['introduce']; ?></div>
+                        </a>
+                    </div>
                 <?php } ?>
-
             </div>
         </div>
 
         <?php foreach ($cate_list as $row) { ?>
-        <div id="<?php echo $row['catename']; ?>" class="card">
-            <div class="card-head">
-                <i class="fa <?php echo $row['icon']; ?> fa-fw"></i><?php echo $row['catename']; ?>
+        <div id="<?php echo $row['catename']; ?>" class="card link-card">
+            <div class="card-head flex">
+                <strong><i class="fa <?php echo $row['icon']; ?> fa-fw"></i><?php echo $row['catename']; ?></strong>
                 <a href="<?php echo empty($row['alias']) ? "category-{$row['id']}.html" : "category-{$row['alias']}.html"; ?>" class="more"><i class="fa fa-ellipsis-h fa-fw"></i></a>
             </div>
-            <div class="card-body">
-                <?php $site_list = $DB->findAll('site', 'id,name,alias,img', array('catename' => $row['catename']), 'lid asc', 14);
+            <div class="card-body flex">
+                <?php $site_list = $DB->findAll('site', 'id,name,alias,introduce,img', array('catename' => $row['catename']), 'lid asc', (int)$conf['index_max_count'] ?? 14);
                 foreach ($site_list as $rows) { ?>
-                <a href="<?php echo empty($rows['alias']) ? "site-{$rows['id']}.html" : "{$rows['alias']}.html"; ?>" target="_blank" class="item" title="<?php echo $rows['name']; ?>" data-id="<?php echo $rows['id']; ?>">
-                    <span class="icon"><img class="lazy-load" src="assets/images/loading.gif" data-src="<?php echo $rows['img']; ?>"></span>
-                    <span class="name"><?php echo $rows['name']; ?></span>
-                </a><?php } ?>
+                <div class="item">
+                    <a class="link-box" href="<?php echo empty($rows['alias']) ? "site-{$rows['id']}.html" : "{$rows['alias']}.html"; ?>" target="_blank" title="<?php echo $rows['name']; ?>" data-id="<?php echo $rows['id']; ?>">
+                        <h3 class="item-title">
+                            <span class="icon"><img class="lazy-load" src="assets/images/loading.gif" data-src="<?php echo $rows['img']; ?>"></span>
+                            <span class="name"><?php echo $rows['name']; ?></span>
+                        </h3>
+                        <div class="intro" title="<?php echo $rows['introduce']; ?>"><?php echo $rows['introduce']; ?></div>
+                    </a>
+                </div><?php } ?>
 
             </div>
         </div>

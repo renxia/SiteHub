@@ -33,7 +33,7 @@ $page_title = $cate_item['catename'] . '- 分类列表 - ' . $conf['title'];
     <link rel="shortcut icon" type="images/x-icon" href="<?php echo $site_url; ?>/favicon.ico" />
     <link href="./assets/fontawesome/4.7.0/css/fontawesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="<?php echo $site_url; ?>/assets/css/ozui.min.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo $site_url; ?>/templates/default/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $site_url; ?>/templates/<?php echo $conf['theme']; ?>/css/style.css?v=<?php echo $conf['themeVersion']; ?>" />
     <?php echo $conf['script_header']; ?>
 
 </head>
@@ -54,21 +54,22 @@ $page_title = $cate_item['catename'] . '- 分类列表 - ' . $conf['title'];
             <span class="icon"><i class="fa fa-map-signs fa-fw"></i></span>
             <a href="./">导航首页</a>&nbsp;»&nbsp;<span><?php echo $cate_item['catename']; ?></span>
         </div>
-        <div id="<?php echo $cate_item['catename']; ?>" class="card">
+        <div id="<?php echo $cate_item['catename']; ?>" class="card link-card">
             <div class="card-head">
                 <i class="fa <?php echo $cate_item['icon']; ?> fa-fw"></i><?php echo $cate_item['catename']; ?>
             </div>
-            <div class="card-body">
-                <?php foreach($site_list as $row) { ?>
-                    <a class="item"
-                        title="<?php echo $row['url']; ?>"
-                        href="./<?php echo empty($row['alias']) ? "site-{$row['id']}.html" : "{$row['alias']}.html"; ?>"
-                        target="_blank"
-                        data-id="<?php echo $row['id']; ?>"
-                    >
-                        <span class="icon"><img class="lazy-load" src="../assets/images/loading.gif" data-src="<?php echo $row['img']; ?>"></span>
-                        <span class="name"><?php echo $row['name']; ?></span>
-                    </a><?php } ?>
+            <div class="card-body flex">
+                <?php foreach($site_list as $rows) { ?>
+                    <div class="item">
+                        <a class="link-box" href="<?php echo "site-{$rows['id']}.html"; ?>" target="_blank" title="<?php echo $rows['name']; ?>" data-id="<?php echo $rows['id']; ?>">
+                            <h3 class="item-title">
+                                <span class="icon"><img class="lazy-load" src="assets/images/loading.gif" data-src="<?php echo $rows['img']; ?>"></span>
+                                <span class="name"><?php echo $rows['name']; ?></span>
+                            </h3>
+                            <div class="intro" title="<?php echo $rows['introduce']; ?>"><?php echo $rows['introduce']; ?></div>
+                        </a>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>

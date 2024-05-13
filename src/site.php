@@ -102,7 +102,7 @@ $site_list = $DB->findAll('site', 'id,name,alias,img', array('catename' => $site
     <link rel="shortcut icon" type="images/x-icon" href="./favicon.ico" />
     <link href="./assets/fontawesome/4.7.0/css/fontawesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="./assets/css/ozui.min.css" />
-    <link rel="stylesheet" type="text/css" href="./templates/default/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./templates/<?php echo $conf['theme']; ?>/css/style.css?v=<?php echo $conf['themeVersion']; ?>" />
     <?php echo $conf['script_header']; ?>
 
 </head>
@@ -130,7 +130,7 @@ $site_list = $DB->findAll('site', 'id,name,alias,img', array('catename' => $site
             <div class="part-main">
                 <span class="site-name"><?php echo $site_item['name']; ?></span>
                 <span class="oz-xs-12 oz-sm-6 oz-lg-4">站点域名：<?php echo $domain; ?></span>
-                <span class="oz-xs-12 oz-sm-6 oz-lg-4">站点星级：<img class="lazy-load" src="templates/default/images/star/<?php echo $site_item['star'] || 1; ?>.png"></span>
+                <span class="oz-xs-12 oz-sm-6 oz-lg-4">站点星级：<img class="lazy-load" src="templates/<?php echo $conf['theme']; ?>/images/star/<?php echo $site_item['star'] || 1; ?>.png"></span>
                 <span class="oz-xs-12 oz-sm-6 oz-lg-4">是否推荐：<?php echo $site_item['tui'] == 1 ? "<span color=red>是</span>" : '否'; ?></span>
                 <span class="oz-xs-6 oz-sm-6 oz-lg-4">日浏览数：<?php echo $site_item['hits_day']; ?> 次</span>
                 <span class="oz-xs-6 oz-sm-6 oz-lg-4">月浏览数：<?php echo $site_item['hits_month']; ?> 次</span>

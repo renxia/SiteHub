@@ -59,6 +59,19 @@ $site_cdnpublic = $site_http . '/assets/';
 $password_hash = '!@#%!s!0';
 $admin_islogin = 0;
 
+$themeDir = ROOT . '/templates/' . $conf['theme'];
+if (!file_exists($themeDir)) {
+    $conf['theme'] = 'default';
+    $themeDir = ROOT . '/templates/' . $conf['theme'];
+}
+
+if (file_exists($themeDir . '/config.php')) {
+    @include($themeDir . '/config.php');
+    if (isset($themeConfig) && $themeConfig['version']) {
+        $conf['themeVersion'] = $themeConfig['version'];
+    }
+}
+
 if (isset($_COOKIE["admin_token"])) {
     $token = authcode(daddslashes($_COOKIE['admin_token']), 'DECODE', SYS_KEY);
     list($user, $sid) = explode("\t", $token);

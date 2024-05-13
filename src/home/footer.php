@@ -36,7 +36,7 @@ if (!defined('IN_CRONLITE')) return;
 
 <script type="text/javascript" src="assets/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="assets/layer/3.1.1/layer.js"></script>
-<script type="text/javascript" src="templates/default/js/main.js"></script>
+<script type="text/javascript" src="templates/<?php echo $conf['theme']; ?>/js/main.js?v=<?php echo $conf['themeVersion']; ?>"></script>
 
 <?php echo $conf['script_footer']; ?>
 

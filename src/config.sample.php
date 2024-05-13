@@ -1,4 +1,8 @@
 <?php
+
+ini_set('display_errors', 'Off');
+error_reporting(E_ERROR);
+
 /* 数据库配置 */
 $dbconfig = array(
     'host'   => '127.0.0.1', // 数据库服务器
