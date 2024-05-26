@@ -20,7 +20,7 @@ $page_title = $lang->index->about . '-' . $conf['title'];
 
 </head>
 
-<body>
+<body class="about-page">
 <?php require('./home/header.php'); ?>
 <?php require('./home/banner.php'); ?>
 <?php require('./home/sidebar.php'); ?>

@@ -1,4 +1,11 @@
 <?php
+/*
+ * @Author: renxia
+ * @Date: 2024-05-14 11:26:37
+ * @LastEditors: renxia
+ * @LastEditTime: 2024-05-27 10:57:11
+ * @Description:
+ */
 // 所有文章按分类展示
 require('./includes/common.php');
 require('./includes/lang.class.php');
@@ -32,7 +39,7 @@ $row_article_suggest = $DB->findAll('article', '*', 'tui=1', 'time desc', 4);
 
 </head>
 
-<body>
+<body class="article-page">
 <?php require('./home/header.php'); ?>
 <?php require('./home/banner.php'); ?>
 <?php require('./home/sidebar.php'); ?>
