@@ -21,7 +21,7 @@ $row_cate = $DB->findAll('category', '*', '', 'sid asc');
         <?php echo $conf['script_header']; ?>
 
     </head>
-<body>
+<body class="apply-page">
 <?php require('./home/header.php'); ?>
 <?php require('./home/banner.php'); ?>
 

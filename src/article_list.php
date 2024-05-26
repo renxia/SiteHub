@@ -32,7 +32,7 @@ $article_list = $DB->findAll('article', 'id,name,time', array('catename' => $art
 
 </head>
 
-<body>
+<body class="article-list-page">
 <?php require('./home/header.php'); ?>
 <?php require('./home/banner.php'); ?>
 <?php require('./home/sidebar.php'); ?>

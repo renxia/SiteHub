@@ -634,6 +634,9 @@ p {
     transition: font-weight, background, transform .3s;
 }
 
+.card .card-body .item .item-title { margin: 0; font-weight: normal }
+.card .card-body .item .intro { display: none }
+
 @media (max-width: 1300px) {
     .card .card-body .item {
         width: 16.6666667%;
@@ -922,31 +925,31 @@ p {
 .view-list a:nth-child(1) .rank {
     font-size: 0;
     background: url("../images/rank_1.png") no-repeat 50% 50%/85%;
-/*  
+/*
     background: #f1404b;
     color: #FFF;
     border-radius: 50%;
-*/ 
+*/
 }
 
 .view-list a:nth-child(2) .rank {
     font-size: 0;
     background: url("../images/rank_2.png") no-repeat 50% 50%/85%;
-/*  
+/*
     background: #c56831;
     color: #FFF;
     border-radius: 50%;
-*/ 
+*/
 }
 
 .view-list a:nth-child(3) .rank {
     font-size: 0;
     background: url("../images/rank_3.png") no-repeat 50% 50%/85%;
-/*  
+/*
     background: #b89e2c;
     color: #FFF;
     border-radius: 50%;
-*/ 
+*/
 }
 .progressbar {
     background: url(../images/progressbar.gif);
