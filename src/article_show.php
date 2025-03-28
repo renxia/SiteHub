@@ -35,7 +35,7 @@ $page_title = $article_item['name'] . '-' . $conf['title'];
     <meta name="keywords" content="<?php echo $conf['keywords']; ?>">
     <meta name="description" content="<?php echo $conf['description']; ?>">
     <link rel="shortcut icon" type="images/x-icon" href="./favicon.ico" />
-    <link href="./assets/fontawesome/4.7.0/css/fontawesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<?php echo $site_cdnpublic; ?>font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="./assets/css/ozui.min.css" />
     <link rel="stylesheet" type="text/css" href="./templates/<?php echo $conf['theme']; ?>/css/style.css?v=<?php echo $conf['themeVersion']; ?>" />
     <?php echo $conf['script_header']; ?>
@@ -46,23 +46,25 @@ $page_title = $article_item['name'] . '-' . $conf['title'];
 <?php require('./home/header.php'); ?>
 <?php require('./home/banner.php'); ?>
 <?php require('./home/sidebar.php'); ?>
-<div class="container">
-    <div class="card board">
-        <span class="icon"><i class="fa fa-map-signs fa-fw"></i></span>
-        <span><a href="./">导航首页</a>&nbsp;»&nbsp;</span>
-        <span><a href="./article.html"><?php echo $lang->index->article; ?></a>&nbsp;»&nbsp;</span>
-        <span><a href="<?php echo $article_cate_url; ?>"><?php echo $article_item['catename']; ?></a></span>
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <div class="content">
-                <div class="text-center">
-                    <h1><?php echo $article_item['name']; ?></h1>
-                    <em><?php echo $article_item['time']; ?>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $conf['name']; ?>&nbsp;&nbsp;&nbsp;&nbsp;已浏览<?php echo $article_item['hits_total']; ?>次</em>
+<body class="article-page">
+    <div class="container">
+        <div class="card board">
+            <span class="icon"><i class="fa fa-map-signs fa-fw"></i></span>
+            <span><a href="./">导航首页</a>&nbsp;»&nbsp;</span>
+            <span><a href="./article.html"><?php echo $lang->index->article; ?></a>&nbsp;»&nbsp;</span>
+            <span><a href="<?php echo $article_cate_url; ?>"><?php echo $article_item['catename']; ?></a></span>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="content">
+                    <div class="text-center">
+                        <h1><?php echo $article_item['name']; ?></h1>
+                        <em><?php echo $article_item['time']; ?>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $conf['name']; ?>&nbsp;&nbsp;&nbsp;&nbsp;已浏览<?php echo $article_item['hits_total']; ?>次</em>
+                    </div>
+                    <br /><br />
+                    <?php echo htmlspecialchars_decode($article_item['introduce']); ?>
+                    <br /><br />
                 </div>
-                <br /><br />
-                <?php echo $article_item['introduce']; ?>
-                <br /><br />
             </div>
         </div>
     </div>

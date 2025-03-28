@@ -1,4 +1,5 @@
 <?php
+require_once('./includes/common.php');
 require_once './includes/common.php';
 // 置顶站点
 $site_list_top = $DB->findAll('site', 'id,name,img,alias', array('tui' => '1'), 'lid asc', 12);
@@ -23,20 +24,20 @@ $link_list = $DB->findAll('link', 'url,name', null, 'id asc', 20);
 // 文章推荐
 $article_list_suggest = $DB->findAll('article', 'id,name,hits_total,time,introduce', 'tui=1', 'time desc', 8);
 $page_title = $conf['title'];
-require_once './includes/lang.class.php';
+require_once('./includes/lang.class.php');
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head><?php require './home/meta.php';?></head>
 <body>
-<?php require './home/header.php';?>
-<?php require './home/banner.php';?>
+<?php require('./home/header.php'); ?>
+<?php require('./home/banner.php'); ?>
 
 <ul class="category">
     <li><a href="#置顶站点" class="move"><span>置顶推荐</span> <i class="fa fa-thumbs-o-up fa-fw"></i></a></li>
-<?php foreach ($cate_list as $rows) {?>
+<?php foreach($cate_list as $rows) { ?>
     <li><a href="#<?php echo $rows['catename']; ?>" class="move"><span><?php echo $rows['catename']; ?></span> <i class="fa <?php echo $rows['icon']; ?> fa-fw"></i></a></li>
-<?php }?>
+<?php } ?>
 </ul>
 
 <div class="container">

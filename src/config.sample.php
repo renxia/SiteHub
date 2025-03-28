@@ -1,7 +1,12 @@
 <?php
 
-ini_set('display_errors', 'Off');
-error_reporting(E_ERROR);
+// ini_set('display_errors', 'Off');
+// error_reporting(E_ERROR);
+
+// 程序配置
+$app_config = array(
+    'subpath' => ''
+);
 
 /* 数据库配置 */
 $dbconfig = array(

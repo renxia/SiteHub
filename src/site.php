@@ -100,7 +100,7 @@ $site_list = $DB->findAll('site', 'id,name,alias,img', array('catename' => $site
     <meta name="keywords" content="<?php echo $keywords; ?>">
     <meta name="description" content="<?php echo $description; ?>">
     <link rel="shortcut icon" type="images/x-icon" href="./favicon.ico" />
-    <link href="./assets/fontawesome/4.7.0/css/fontawesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<?php echo $site_cdnpublic; ?>font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="./assets/css/ozui.min.css" />
     <link rel="stylesheet" type="text/css" href="./templates/<?php echo $conf['theme']; ?>/css/style.css?v=<?php echo $conf['themeVersion']; ?>" />
     <?php echo $conf['script_header']; ?>
@@ -185,7 +185,7 @@ $site_list = $DB->findAll('site', 'id,name,alias,img', array('catename' => $site
         <div class="card-head">
             <i class="fa fa-magnet fa-fw" aria-hidden="true"></i> 相关站点
         </div>
-        <div class="card-body">
+        <div class="card-body top-grid">
         <?php foreach($site_list as $rows) { ?>
             <a
                 class="item"
